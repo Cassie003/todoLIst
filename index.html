@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+</head>
+<body>
+    <div class="main">
+        <div class="home-page">
+            <div class="header">
+                 <div class="side">
+                    <img src = "sideImg.jpg" style = "width:48px" class ="img" >
+                 </div>
+                 <div class="time">GoodMorning </div>
+                 <div class="username">Justina,</div>
+                 <span class="material-symbols-outlined add-btn">add</span>
+            </div>
+            <div class="title-section">
+                <div class="title-cointainer">
+                    <div class="title">
+                        your
+                        <br/> &nbsp;&nbsp;notes
+                    </div>
+                    <div class="count">/1</div>
+                </div>
+            <div class="tag-container">
+                <div class="tag" id = "personal">#personal</div>
+                <div class="tag active" id = "work">#work</div>
+                <div class="tag" id = "home">#home</div>
+                <div class="tag" id="entermainent">#entermainent</div>
+                <div class="tag" id = "comunity">#community</div>
+            </div>
+            </div>
+            <div class="todo-section">
+                <!-- <ul class="list-cointainer">
+                    <li>  
+                        <div class="counter">
+                        <div class="index">01/</div>
+                        <span>/</span>
+                        </div>
+                        <div class="content">
+                            <div class="content-title">call summary</div>
+                            <div class="content-text">
+                                several new features need to be implemented in the existing....
+                            </div>
+                        </div>
+                    </li>
+                  
+                </ul> -->
+            </div>
+    
+        </div>
+        <div class="detail-page">
+            <div class="header-section">
+                <div class="back-icon">
+                    <span class="material-symbols-outlined">
+                        arrow_back
+                        </span>
+                </div>
+                <div class="delete-diasbled">delete</div>
+            </div>
+            <div class="edit-section">
+                <div class="date-tag">
+                    <input type="text" id="edit-date" placeholder="01/01/2023">
+                    <input type="text" id="edit-tag" placeholder="#tag">
+                </div>   
+            </div>
+            <div class="title-text-container" >
+                <input type="text" id="edit-title" placeholder="Task Title" />
+                <textarea id="edit-text" rows="10" width="100%" placeholder="task content" ></textarea>
+              </div>
+            <div class="btn-section">
+                <div class="cancel">cancel</div>
+                <div class="save">save changes</div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+<script>
+   const addButton = document.querySelector('.add-btn');
+   const detailPage = document.querySelector('.detail-page');
+   const homePage = document.querySelector ('.home-page');
+   const backButton = document.querySelector('.back-icon');
+   const taskTitle = document.getElementById('edit-title');
+   const editText  = document.getElementById('edit-text');
+   const saveBtn = document.querySelector('.save');
+   const listItem = document.querySelector('.list-cointainer');
+   const toDo = document.querySelector('.todo-section');
+   const editTag = document.querySelector('.edit-tag');
+   const editDate = document.querySelector('.edit-date');
+
+
+    let openDetailPage = false;
+
+    addButton.addEventListener('click', () => {
+        detailPage.classList.add('active');
+        detailPage.style.visibility = 'visible';
+        openDetailPage = true;
+    });
+
+    let closeHomePage = false;
+    backButton.addEventListener('click', () => {
+        if(openDetailPage){
+            detailPage.classList.remove('active');
+            addButton.classList.add('active');
+            detailPage.style.visibility = 'hidden';
+        }
+      
+    });
+
+      detailPage.style.visibility = 'hidden';
+      homePage.style.visibility = 'visible';
+
+      
+
+      let itemList = [];
+      let taskList = {
+        'id':1,
+        'title':'call summary',
+        'text':'several new features need to be implemented in the existing',
+        'date':'24/07/23',
+        'tag':'#work'
+      };
+      itemList.push(taskList);
+
+      pushItems();
+       
+     function pushItems(){
+        while(toDo.firstChild){
+            toDo.removeChild(toDo.firstChild);
+        }
+        taskList.forEach((task) =>{
+            let listItemContainer = document.createElement('div');
+            listItemContainer.classList.add('list-cointainer');
+            let counter = document.createElement('div');
+            counter.classList.add('counter');
+            let content = document.createElement('div');
+            content.classList.add('content');
+            let icon = document.createElement('div');
+            icon.classList.add('icon');
+          
+
+
+            counter.textContent = '0'+ task.id + '/';
+            icon.appendChild(faicon);
+            
+            listItemContainer.appendChild(counter);
+            listItemContainer.appendChild(content);
+            listItemContainer.appendChild(icon);
+           
+        });
+     }
+        saveBtn.addEventListener('click', () =>{
+         if (taskTitle.value == "" || editText.value == ""){
+            alert("Please enter a title and task");
+         } else {
+            console.log(taskTitle.value);
+            console.log(editText.value);
+
+            listItem.appendChild(editText);
+            listItem.appendChild(taskTitle);
+
+            taskList.forEach((task) =>{
+                if(task.id == openDetailPage.getAttribute("id")){
+                  task.title = taskTitle.value;
+                  task.text = editText.value;
+                  task.date = editDate.value;
+                  task.tag = editTag.value;
+                }
+              });
+
+         }
+        });
+
+
+
+
+    
+</script>
+</html>

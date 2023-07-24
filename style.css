@@ -1,0 +1,226 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+    font-family: 'PP Neue Montreal', sans-serif ;
+    overflow: hidden;
+}
+body{
+    padding:0px;
+    margin:0px;
+    box-sizing: border-box;
+    background:hsl(210, 36%, 96%);
+}
+.main{
+  width:100%;
+  max-width:880px;
+  display :flex;
+  margin:0px auto;
+}
+.home-page{
+    display:flex;
+    flex-direction: column; 
+    background:#131313;
+    padding:32px;
+    color:#f5f5f5;
+    min-width:100%;
+    flex-basis: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+.header{
+    display:flex;
+    padding: 16px 8px;
+    align-items:center;
+    border-bottom:2px solid #f5f5f5;
+}
+.side{
+    height: 48px;
+    border-radius:50%;
+}
+.img{
+    border-radius:50%; 
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+.time{
+    padding:8px;
+}
+.material-symbols-outlined{
+    margin-left:auto;
+    padding:16px;
+    cursor:pointer;
+}
+.title-section{
+    border-bottom:2px solid #f5f5f5;
+}
+.title-cointainer{
+display:flex;
+padding:16px;
+}
+.title{
+    flex-grow:1;
+    line-height:100%;
+    font-size:clamp(6rem, 9vw + 1rem, 8rem); 
+}
+.count{
+    color: rgba(245, 245, 245, 0.6);
+    font-size:clamp(2rem, 6vw + 1rem, 6rem );
+    align-self:flex-end;
+}
+.tag-container{
+    display:flex;
+    padding:8px 16px;
+    overflow-x:auto;
+}
+.tag{
+    padding:8px;
+    margin:8px;
+    border:2px solid #f5f5f5;
+    border-radius:24px;
+    font-weight:500;
+    cursor: pointer;
+}
+.tag.active{
+    color:#131313;
+    background:#fe6902;
+    border:2px solid #131313;
+    cursor: pointer;
+}
+.todo-section{
+    display:flex;
+    flex-direction: column;
+}
+.list-cointainer{
+    display:flex;
+    padding: 0px 16px;
+    border-bottom:2px solid #f5f5f5 ;
+    cursor: pointer;
+    transition :0.4s;
+}
+.list-item-container:hover
+.list-icon{
+  transform:rotate(0deg);
+}
+.list-item-container:hover
+.content-title{
+  padding:0px 32px;
+}
+.list-item-container .counter{
+  min-width:24px;
+}
+.content{
+    flex-grow:1;
+}
+.content-title{
+    line-height: 100%;
+    padding:0px 16px;
+    font-size:clamp(2rem, 2vw + 1rem, 6rem ); 
+}
+.content-text{
+    padding:0px 16px;
+    color:rgba(245,245,245,0.6)
+}
+.detail-page{
+    display:flex;
+    flex-direction:column;
+    flex-basis:100%;
+    min-width:100%;
+    height:100%;
+    background:#f5f5f5;
+    box-shadow:-2px 0px 2px 1px rgba(0, 0, 0, 0.5);
+    transition:0.4s;
+    z-index:1;
+    padding:32px;
+    color:#f5f5f5;
+    overflow-y:auto;
+
+}
+.detail-page.active{
+  transform:translateX(-100%);
+}
+
+.detail-page *{
+    color:#131313;
+   
+  }
+  
+  .detail-page .header-section{
+    max-height:82px;
+    padding-top:32px;
+    padding-bottom:32px;
+    border-bottom:2px solid #131313;
+  }
+  .date-tag{
+    display:flex;
+    justify-content: center;
+    padding: 16px 0px;
+  }
+  .tittle-text-container{
+    display: flex;
+    flex-direction: column;
+  }
+  input{
+    outline:none;
+    border:none;
+    background:#f5f5f5;
+  }
+  .edit-section{
+   display:flex;
+   flex-direction: column; 
+   border-bottom: 2px solid #131313;
+  }
+  #edit-tag{
+    text-align:right;
+  }
+  #edit-title{
+    width:100%;
+    padding:16px 0px;
+    font-size:clamp(2rem, 3vw + 1rem, 6rem );
+  }
+  textarea{
+    min-width:100%;
+    max-width:100%;
+    outline:none;
+    border:none;
+    resize:none;
+    background:#f5f5f5;
+    font-size:20px;
+  }
+  .btn-section{
+    display:flex;
+    align-items:center;
+    padding:32px 0px;
+    justify-content:space-between;
+  }
+  .cancel{
+    border:2px solid #131313;
+    padding:8px 32px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:500;
+  }
+  .save{
+    border:2px solid #fe6902;
+    background:#fe6902;
+    padding:8px 32px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:500;
+    color:#f5f5f5;
+  }
+  .disabled{
+    opacity:0.25;
+  }
+  .delete{
+    margin-left:auto;
+    border:2px solid #131313;
+    padding:4px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:500;
+  }
+  .material-symbols-outlined, .delete{
+    cursor:pointer;
+  }
