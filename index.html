@@ -35,7 +35,7 @@
                 <div class="tag" id = "comunity">#community</div>
             </div>
             </div>
-            <div class="todo-section">
+            <div class="todo-section" id = "todo">
                 <!-- <ul class="list-cointainer">
                     <li>  
                         <div class="counter">
@@ -96,7 +96,7 @@
    const editTag = document.querySelector('#edit-tag');
    const editDate = document.querySelector('#edit-date');
    const cancelBtn = document.querySelector('.cancel')
-
+   const todoTask = document.querySelector('#todo')
 
 
     let openDetailPage = false;
@@ -216,8 +216,13 @@
               newTask.date = editDate.value;
               newTask.tag = editTag.value;
 
+              document.getElementById("todoTask").innerHTML = newTask;
+
               itemList.push(newTask);
-              console.log(newTask);   
+              console.log(newTask); 
+
+              
+               
 
               }
              
