@@ -109,6 +109,11 @@
 
     let closeHomePage = false;
     backButton.addEventListener('click', () => {
+        pushItems();
+        editText.value = "";
+        taskTitle.value = "";
+        editDate.value = "";
+        editTag.value =  "";
         if(openDetailPage){
             detailPage.classList.remove('active');
             addButton.classList.add('active');
@@ -179,18 +184,13 @@
                     openDetailPage = true;
                     editText.value = task.text;
                     taskTitle.value = task.title;
-
-                    detailPage.setAttribute('id', 'task.id');
-                    task.title = taskTitle.value;
-                    task.text = contentText.value;
-                    task.date = editDate.value;
-                    task.tag = editTag.value;
-
-                    itemList.push(task);
+                    editDate.value = task.date;
+                    editTag.value = task.tag;
+                    detailPage.setAttribute('id', task.id )
 
                     //homePage.push(taskList);
                     //console.log(taskList);
-}); 
+                }); 
 
             toDo.appendChild(listItemContainer);
 
@@ -200,33 +200,46 @@
        
      }
         saveBtn.addEventListener('click', () =>{
-         if (taskTitle.value == "" || editText.value == ""){
-            alert("Please enter a title and task");
-        
-        backButton.click();
+         if (detailPage.getAttribute('id') != null &&  detailPage.getAttribute('id') != "") { 
+            //alert("Please enter a title and task");
 
-         } else if(taskTitle.value !== "" || editText.value !== ""){
-            console.log(taskTitle.value);
-            console.log(editText.value);
+            let id = detailPage.getAttribute('id');
 
-              let newTask = {};
-              newTask.id = taskList.length + 1;
-              newTask.title = taskTitle.value;
-              newTask.text = editText.value;
-              newTask.date = editDate.value;
-              newTask.tag = editTag.value;
-
-              document.getElementById("todoTask").innerHTML = newTask;
-
-              itemList.push(newTask);
-              console.log(newTask); 
-
-              
-               
-
-              }
-             
+            itemList.forEach( (edit)=>{
+                if (id == edit.id){
+                    edit.title = taskTitle.value;
+                    edit.text = editText.value;
+                    edit.date = editDate.value;
+                    edit.tag = editTag.value;
+                }
             });
+            detailPage.removeAttribute('id');
+            backButton.click();
+
+         } else {
+
+             if(taskTitle.value !== "" || editText.value !== ""){
+                console.log(taskTitle.value);
+                console.log(editText.value);
+    
+                  let newTask = {};
+                  newTask.id = itemList.length + 1;
+                  newTask.title = taskTitle.value;
+                  newTask.text = editText.value;
+                  newTask.date = editDate.value;
+                  newTask.tag = editTag.value;
+    
+               
+    
+                  itemList.push(newTask);
+                  console.log(newTask); 
+    
+                  }
+                 backButton.click();
+         }
+            
+        
+        });
         
           //  cancelBtn.addEventListener("click", () => {
            // if (taskTitle.value == "" || editText.value == "" ){
