@@ -91,12 +91,13 @@
    const taskTitle = document.getElementById('edit-title');
    const editText  = document.getElementById('edit-text');
    const saveBtn = document.querySelector('.save');
-   const listItem = document.querySelector('.list-cointainer');
+   const listItem = document.querySelector('[list-cointainer]');
    const toDo = document.querySelector('.todo-section');
    const editTag = document.querySelector('#edit-tag');
    const editDate = document.querySelector('#edit-date');
-   const cancelBtn = document.querySelector('.cancel')
-   const todoTask = document.querySelector('#todo')
+   const cancelBtn = document.querySelector('.cancel');
+   const todoTask = document.querySelector('#todo');
+   const tagBtn = document.querySelectorAll('[tag]');
 
 
     let openDetailPage = false;
@@ -186,7 +187,7 @@
                     taskTitle.value = task.title;
                     editDate.value = task.date;
                     editTag.value = task.tag;
-                    detailPage.setAttribute('id', task.id )
+                    detailPage.setAttribute('id', task.id );
 
                     //homePage.push(taskList);
                     //console.log(taskList);
@@ -201,7 +202,7 @@
      }
         saveBtn.addEventListener('click', () =>{
          if (detailPage.getAttribute('id') != null &&  detailPage.getAttribute('id') != "") { 
-            //alert("Please enter a title and task");
+        
 
             let id = detailPage.getAttribute('id');
 
@@ -247,6 +248,47 @@
         // }
        // });
 
+ function openTag(tagName) {
+    let i;
+    let tagBtn
+
+    tagBtn = document.getElementsByClassName('tag');
+
+    for (i = 0; i < tagBtn.length; i++){
+        tagBtn[i].addEventListener('click', () =>{
+            tagBtn.classList.add('active');
+            if(tag[i] == editTag.value){
+                toDo.appendChild(listItemContainer);
+            }
+        });
+      
+
+ }
+            let personalTag = document.getElementById("personal");
+            let workTag = document.getElementById("work");
+            let homeTag = document.getElementById("home");
+            let entermainentTag = document.getElementById("entertainment"); 
+            let communityTag = document.getElementById("community"); 
+                
+            personalTag.addEventListener('click', function(){
+                openTag(personal)
+            });
+            workTag.addEventListener('click', function(){
+                workTag(work)
+            });
+            homeTag.addEventListener('click', function(){
+                homeTag(home)
+            });
+            entermainentTag.addEventListener('click', function(){
+                entermainentTag(entermainent)
+            });
+            communityTag.addEventListener('click', function(){
+                communityTag(community)
+            });
+
+            
+            
+        
 
 
     
